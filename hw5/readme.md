@@ -10,4 +10,8 @@ for i in range(xy_size[0]):
         
 ```
 
+<img width="256" alt="스크린샷 2022-05-13 오후 3 22 45" src="https://user-images.githubusercontent.com/63406434/168223305-592eab8a-1a70-4e88-9ecc-7a88eef16702.png">
+
+행렬에 append가 안되었다 ? 왜왜??? 
+
 2. 반대로, xy_points[i]
