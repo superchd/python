@@ -9,20 +9,25 @@ def solution(number, k):
     for i in range(10):
         q = Queue()
         Q.append(q)
-                
-    # 처음으로 가장 큰 수가 나올 때, 그 수의 인덱스 찾기
-    max = 0
+    
+    # 문자열 전처리하기 (case3 처럼 제일 앞 두수를 제거하는경우)
     idx = 0
-    for i in range(len(number)): 
+    max = 0
+    for i in range(k):
         if max < int(number[i]):
             max = int(number[i])
             idx = i
-   
-    # number문자열을 가공한다. number중에 제일 큰 수가 제일 앞에 오도록!
-    if idx + 1 < k:
-        number = number[idx:]
-        k = k - idx
-    print(k, idx, number)
+            
+    # 제거할 문자열의 인덱스를 스페이스로 치환
+    N = list(number)
+    for i in range(idx):
+        N[i] = " "
+        k -= 1
+        
+    number = "".join(N)
+    
+    number = number.replace(" ", "")
+    print(number, k)
         
     # queue로 숫자의 인덱스를 집어넣는다 
     for i in range(len(number)):
