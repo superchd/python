@@ -72,6 +72,6 @@ def solution(booked, unbooked):
     return answer
 
 
-booked = [["09:10", "lee"]]
-unbooked = [["09:00", "kim"], ["09:05", "bae"]]
+booked = [["09:55", "hae"], ["10:05", "jee"]]
+unbooked = [["10:04", "hee"], ["14:07", "eom"]]
 solution(booked, unbooked)
