@@ -3,9 +3,9 @@ import copy
 def num_check(number, idx, tank, k):
     flag = 0
     tank.append(number[idx])
-    l = len(tank)
+    temp = copy.deepcopy(tank)
 
-    for i in range(l):
+    for i in range(len(temp)):
         if k == 0 : return tank, k
         if len(tank) == 1: return tank, k
     
@@ -28,3 +28,7 @@ def solution(number, k):
     answer = "".join(tank) + number[idx:]
     
     return answer
+
+number = "4177252841"
+k = 4
+print(solution(number, k))
