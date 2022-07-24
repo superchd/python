@@ -1,19 +1,26 @@
-# 딕셔너리 val를 중복으로 허용해주겠다
-class ticket(object):
-    def __init__(self, depart):
-        self.depart = depart
-    # 클래스니까 출력 포맷을 정한다.
-    def __str__(self):
-        return self.depart
-    def __repr__(self):
-        return "'" + self.depart + "'"
-
+# 키 중복을 처리하기 위한 딕셔너리를 만든다
 def pre_process(tickets):
     data = {}
 
     for t in tickets:
-        data[ticket(t[0])] = t[1]
+        ex = []
+
+        if data.get(t[0]) == None:
+            data[t[0]] = t[1]
+        else :
+            if type(data[t[0]]) == str:
+                ex.append(data[t[0]])
+                ex.append(t[1])
+                data[t[0]] = ex
+            else :
+                for d in data[t[0]]:
+                    ex.append(d)
+                    ex.append(d[1])
+                    data[t[0]] = ex 
+
     return data
+
+
 
 # 처음 출발점을 알아할거 같은데
 def my_sol(data):
@@ -24,23 +31,22 @@ def my_sol(data):
     first = ''
     arrive = ''
     print(key, val)
-    print(data)
 
     # 제일 처음 출발하는 도시를 찾는다.(dict[key]했을 때, val가 없으면 출발하는 도시)
     for v in val:
-        if data.get(ticket(v)) == None:
-            print(f"v = {v}, get(v) = {data.get(v)}")
-            first = v
-            break
+        for ele in v:
+            if ele in data == True:
+                first = v
+                break
 
     # 여행 마지막 도시를 찾는다.
     for k in key:
-        
         if data.get(k) == None:
             arrive = k
             break
 
-    print(first)
+    print(first, arrive)
+
     return 
 
 def solution(tickets):
