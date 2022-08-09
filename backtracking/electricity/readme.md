@@ -19,7 +19,7 @@ sidebar:
 * -> 기초 문제다시풀어야 겠다.... 
 
 
-  ```python
+```python
 from collections import deque
 
 node = [[0] * 100 for _ in range(100)]
@@ -76,7 +76,7 @@ wires = [[1,3],[2,3],[3,4],[4,5],[4,6],[4,7],[7,8],[7,9]]
 solution(n, wires)
 
 # 1 0 2 3 4 5 6 7 8 9 result: 8
-  ```
+```
 
   * 왜 갑자기 0번 vertex를 방문하냐? ㅋㅋㅋ 개 뜬금없네... 무슨 문제지??? 흠...... 그리고 result 8은 무슨 일이냐?...
 
