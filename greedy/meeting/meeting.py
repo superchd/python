@@ -1,9 +1,3 @@
-
-
-
-from symbol import pass_stmt
-
-
 def my_input():
 
     N = int(input())
@@ -17,8 +11,12 @@ def my_input():
     
     return lst
 
-
 def solution(lst):
+    flag = 0
+    cnt = 0
+    lst.sort(key = lambda x: x[0])
+    lst.sort(key = lambda x: x[1])
+
     flag = 0
     cnt = 0
     for l in lst:
@@ -28,11 +26,10 @@ def solution(lst):
             cnt += 1
             flag = 1
         else :
-            if l[0] >= e and l[1] > e:
+            if l[0] >= e:
+                cnt += 1
                 s = l[0]
                 e = l[1]
-                cnt += 1 
     print(cnt)
-
 lst = my_input()
 solution(lst)

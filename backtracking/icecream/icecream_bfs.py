@@ -9,7 +9,6 @@ def bfs(graph, x, y, queue):
     global visited
     dx = [-1, 1, 0, 0]
     dy = [0, 0, -1, 1]
-    depth = 0
 
     while queue:
         v = queue.popleft()
@@ -25,7 +24,6 @@ def bfs(graph, x, y, queue):
             if graph[nx][ny] == 0:
                 queue.append([nx, ny])
                 visited[nx][ny] = 1
-                depth = depth + 1
     return 
 
 def solution():
