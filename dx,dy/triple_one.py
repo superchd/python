@@ -3,14 +3,13 @@ def in_range(x, y, n):
         return True
     else :return False
 
-# 그래프
-graph = []
 
 # 입력받기
 n = int(input())
-for _ in range(n):
-    graph.append(list(map(int, input().split())))
-
+graph = [
+    list(map(int, input().split()))
+    for _ in range(n)
+]
 # 초기조건 설정
 dx = [1, 0, -1, 0]
 dy = [0, -1, 0, 1]
