@@ -1,34 +1,27 @@
-import copy
+import functools
+
+# 변수 선언 및 입력
+n, m = tuple(map(int, input().split()))
+a = list(map(int, input().split()))
 
 ans = []
 
-def combination(arr, nums, m):
+def find_max_xor(curr_idx, cnt, curr_val):
     global ans
-    if len(arr) == m:
-        #print(*arr)
-        val = 0
-        for i in range(0, m):
-            val ^= arr[i]
-        #print(val)
-        ans.append(val)
+
+    if cnt == m:
+        ans.append(curr_val)
         return
 
-    l = len(nums)
+    if curr_idx == n:
+        return
 
-    for i in range(1, l):
-        arr.append(nums[i])
-        temp = copy.deepcopy(nums)
-        del nums[i]
-        combination(arr, nums, m)
-        arr.pop()
-        nums = temp
+    #선택하는경우
+    find_max_xor(curr_idx + 1, cnt + 1, curr_val ^ a[curr_idx])
 
+    #선택하지 않는경우
+    find_max_xor(curr_idx + 1, cnt, curr_val)
     return
-    
-n, m = map(int, input().split())
-nums = list(map(int, input().split()))
 
-
-combination([], nums, m)
-print(ans)
+find_max_xor(0, 0, 0)
 print(max(ans))
