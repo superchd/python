@@ -9,7 +9,7 @@ grid = [
 ]
 
 visited = [
-    [False for _ in range(m)]
+    [0 for _ in range(m)]
     for _ in range(n)
 ]
 
@@ -24,7 +24,7 @@ def in_range(x, y):
 def can_go(x, y):
     if not in_range(x, y) : return False
 
-    if visited[x][y] == True or grid[x][y] == 0: return False
+    if visited[x][y] == 1 or grid[x][y] == 0: return False
 
     return True
 
@@ -35,11 +35,13 @@ def bfs(queue):
         for i in range(4):
             nx, ny = x + dx[i], y + dy[i]
             if can_go(nx, ny):
-                visited[nx][ny]
-                print(nx, ny)
-                queue.append([nx, ny])
+                visited[nx][ny] = 1
+                #print(nx, ny)
+                queue.append((nx, ny))
 
-queue = deque([])
-queue.append([0, 0])
-visited[0][0] = True
+queue = deque()
+queue.append((0, 0))
+visited[0][0] = 1
 bfs(queue)
+
+print(visited[n - 1][m - 1])
