@@ -49,6 +49,7 @@ answer = []
 queue = deque()
 for i in range(k):
     x, y = start_points[i]
+    x, y = x - 1, y - 1
     if not visited[x][y]:
         visited[x][y] = 1
         queue.append((x, y))
