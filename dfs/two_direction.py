@@ -4,12 +4,13 @@ grid = []
 for _ in range(n):
     grid.append(list(map(int, input().split())))
 
-visited = [False * m for _ in range(n)]
+visited = [[0] * m for _ in range(n)]
 
 # dx, dy technique
 dx = [1, 0]
 dy = [0, 1]
 nx, ny = 0, 0
+
 
 # can_go condition
 def in_range(x, y):
@@ -22,17 +23,21 @@ def can_go(x, y):
     else : return False
 
 def dfs(x, y):
-    if x == n - 1 and y == m - 1:
-        print('1')
-        return 
-
     nx , ny = x, y
     for i in range(2):
-        nx, ny = nx + dx[i], ny + dy[i]
+        # 여기가 고친 부분
+    for i in range(2):
+        nx, ny = x + dx[i], y + dy[i]
         if can_go(nx, ny) and not visited[nx][ny]:
-            visited[nx][ny] = True
+            
+            visited[nx][ny] = 1
             dfs(nx, ny)
-            visited[nx][ny] = False
+        
     return
 
+
+visited[0][0]= 1
+
 dfs(0, 0)
+
+print(visited[n-1][m-1])
