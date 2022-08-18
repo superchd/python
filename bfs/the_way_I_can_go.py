@@ -40,17 +40,18 @@ def bfs(queue):
         for i in range(4):
             nx, ny = x + dx[i], y + dy[i]
             if can_go(nx, ny):
-                visited[nx][ny] == 1
+                visited[nx][ny] = 1
                 cnt += 1
                 queue.append((nx, ny))
+    answer.append(cnt)
 
-    
 answer = []
 queue = deque()
 for i in range(k):
     x, y = start_points[i]
-    visited[x][y] = 1
-    queue.append((x, y))
-    bfs(queue)
-print(answer)
+    if not visited[x][y]:
+        visited[x][y] = 1
+        queue.append((x, y))
+        bfs(queue)
+print(sum(answer) + 1)
 
