@@ -44,7 +44,7 @@ def find_min():
         for i in range(8):
             nx, ny = x + dx[i], y + dy[i]
             if can_go(nx, ny):
-                push(x, y, step[x][y] + 1)
+                push(nx, ny, step[x][y] + 1)
 
     if visited[r2 - 1][c2 - 1]:
         ans = step[r2 - 1][c2 - 1]
