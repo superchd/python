@@ -2,7 +2,7 @@ import sys
 from collections import deque
 
 INT_MAX = sys.maxsize
-ans = INT_MAX
+
 # input and initial condition
 n, h, m = map(int, input().split())
 
@@ -67,8 +67,8 @@ def find_shelter():
 find_human()
 find_shelter()
 
-def find_min(start_x, start_y):
-    dist[start_x][start_y] = INT_MAX
+def find_min():
+    
 
     while q:
         x, y = q.popleft()
@@ -76,27 +76,20 @@ def find_min(start_x, start_y):
             nx, ny = x + dx[i], y + dy[i]
             if can_go(nx, ny):
                 push(nx, ny, step[x][y] + 1)
-
-    # 도착점까지 얼마나 먼가
-    for s in shelter:
-        end_x, end_y = s
-        if visited[end_x][end_y]:
-            dist[start_x][start_y] = min(dist[start_x][start_y], step[end_x][end_y])
-        
     
-for i in range(h):
-    x, y = humans[i]
+for s in shelter:
+    x, y = s
     push(x, y, 0)
-    find_min(x, y)
-    visited = [
-        [0 for _ in range(n)]
-        for _ in range(n)
-    ]
+
+find_min()
 
 for i in range(n):
     for j in range(n):
-        if dist[i][j] == INT_MAX:
-            dist[i][j] = -1
-
-for d in dist:
-    print(*d)
+        if grid[i][j] != 2:
+            print(0, end=" ")
+        else:
+            if not visited[i][j]:
+                print(-1, end=" ")
+            else:
+                print(step[i][j], end=" ")
+    print()
