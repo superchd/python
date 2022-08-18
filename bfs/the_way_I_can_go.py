@@ -49,10 +49,15 @@ answer = []
 queue = deque()
 for i in range(k):
     x, y = start_points[i]
-    x, y = x - 1, y - 1
-    if not visited[x][y]:
-        visited[x][y] = 1
-        queue.append((x, y))
-        bfs(queue)
-print(sum(answer) + 1)
+    visited[x - 1][y - 1] = 1
+    queue.append((x - 1, y - 1))
+    
+bfs(queue)
+ans = sum([
+    1
+    for i in range(n)
+    for j in range(n)
+    if visited[i][j]
+])
 
+print(ans)
