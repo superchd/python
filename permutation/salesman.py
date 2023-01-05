@@ -1,3 +1,5 @@
+import copy
+
 n = int(input())
 
 a = [
@@ -12,9 +14,9 @@ perm_lst = []
 def perm(cur_idx, selected, visited):
 
     if cur_idx == n:
-        perm_lst.append(selected)
+        element = copy.deepcopy(selected)
+        perm_lst.append(element)
         visited = [0 for _ in range(n + 1)]
-        print(selected)
         return
 
     for i in range(1, n + 1):
@@ -28,4 +30,17 @@ def perm(cur_idx, selected, visited):
         selected.pop(-1)            
     
 perm(0, [], visited)
-print(perm_lst)
+
+
+def count(ele):
+    ele.append(ele[0])
+    cnt = 0
+    for i in range(n):
+        cnt += a[ele[i] - 1][ele[i + 1] - 1]
+    return cnt
+
+s = []
+for j in range(len(perm_lst)):
+    s.append(count(perm_lst[j]))
+
+print(min(s))
