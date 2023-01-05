@@ -1,6 +1,10 @@
 import copy
+import sys
 
 n = int(input())
+
+
+val = sys.maxsize
 
 a = [
     list(map(int, input().split()))
@@ -36,11 +40,15 @@ def count(ele):
     ele.append(ele[0])
     cnt = 0
     for i in range(n):
+        if a[ele[i] - 1][ele[i + 1] - 1] == 0:
+            return -1
         cnt += a[ele[i] - 1][ele[i + 1] - 1]
     return cnt
 
 s = []
 for j in range(len(perm_lst)):
-    s.append(count(perm_lst[j]))
+    if count(perm_lst[j]) != -1:
+        if count(perm_lst[j]) < val:
+            val = count(perm_lst[j])
 
-print(min(s))
+print(val)
