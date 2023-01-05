@@ -36,7 +36,7 @@ def dfs(current, path, k):
     global cnt
     x, y = current[0], current[1]
     if is_blocked(x, y, k):
-#        print(path 
+        print(path) 
         cnt += 1
         return
 
@@ -48,12 +48,13 @@ def dfs(current, path, k):
         path.append((current_x, current_y))
         dfs((current_x, current_y), path, k)
         visited[current_x][current_y] = False
-        path.pop(-1)
+        path.pop()
 
 cnt = 0
 for i in range(N):
     for j in range(M):
-        if can_go(i, j, 1):
-            dfs((i, j), [], 1)
+        if can_go(i, j, 4):
+            visited[i][j] = True
+            dfs((i, j), [(i, j)], 4)
             
 print(cnt)
