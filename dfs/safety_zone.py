@@ -40,7 +40,7 @@ mini = -sys.maxsize
 max_value = max(map(max, a))
 max_idx = 0
 
-for k in range(max_value):
+for k in range(1, max_value + 1):
     cnt = 0
     for i in range(N):
         for j in range(M):
@@ -54,6 +54,8 @@ for k in range(max_value):
         for _ in range(N)
         ]
     if cnt > mini:
+
         mini = cnt
         max_idx = k
-print(k, mini)
+
+print(max_idx, mini)
