@@ -29,6 +29,7 @@ def initial_value():
     for i in range(m):
         first, second = points[i][0] - 1, points[i][1] - 1
         new_count[first][second] = 1 
+    count = new_count
 
 def in_range(x, y):
     if 0 <= x < n and 0 <= y < n:
@@ -49,11 +50,14 @@ def move(x, y):
     for dx, dy in zip(dxs, dys):
         next_x, next_y = x + dx, y + dy
         if in_range(next_x, next_y):
+            #print('current (x,y) =', x,y, ', next (x,y)', next_x, next_y)
             if a[next_x][next_y] > max_num:    
                 max_idx = (next_x, next_y)
                 max_num = a[next_x][next_y]
+    #print('max_idx', max_idx)
     move_x, move_y = max_idx[0], max_idx[1]
     new_count[move_x][move_y] += 1
+    #print(new_count)
             
 def process(new_count):
     for i in range(n):
@@ -63,16 +67,19 @@ def process(new_count):
 
 def simulation():
     for _ in range(t):
-        #print(new_count)
+        print('------new_count check list---------')
+        print(new_count)
         move_all()
-        ##print('------changed----------')
-        #print(new_count)
+        print('------changed----------')
+        print(new_count)
         process(new_count)
+        count = new_count
        
 def move_all():
     for i in range(n):
         for j in range(n):
-            if new_count[i][j] == 1:
+            if count[i][j] == 1:
+                #print('I have to checked', i, j)
                 move(i, j)
 
 def count_num():
