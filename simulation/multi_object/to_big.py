@@ -35,7 +35,7 @@ def in_range(x, y):
 # make count array
 for i in range(len(points)):
     x, y = points[i][0] - 1, points[i][1] - 1
-    print(x, y)
+    #print(x, y)
     count[x][y] = 1
 
 def move(x, y):
@@ -65,15 +65,22 @@ def find_next_points():
             if new_count[i][j] == 1:
                 next_points.append((i, j))
 
+def simulation():
+    move_all()
+    process(new_count)
+    find_next_points()
+    
 def move_all():
-    for i in range(t):
-        for p in next_points:
-            x, y = p[0] - 1, p[1] - 1
-            move(x, y)
-            process(new_count)
-            find_next_points()
-        
-move_all()
-print(new_count)
-//
-//
+    for p in next_points:
+        x, y = p[0] - 1, p[1] - 1
+        move(x, y)
+
+def count_num():
+    ans = 0
+    for i in range(n):
+        for j in range(n):
+            if new_count[i][j] == 1:
+                ans += 1
+    return ans
+simulation()
+print(count_num())
