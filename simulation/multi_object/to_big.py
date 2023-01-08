@@ -25,7 +25,10 @@ new_count = [
     for _ in range(n)
 ]
 
-next_points = copy.deepcopy(points)
+def initial_value():
+    for i in range(m):
+        first, second = points[i][0] - 1, points[i][1] - 1
+        new_count[first][second] = 1 
 
 def in_range(x, y):
     if 0 <= x < n and 0 <= y < n:
@@ -39,11 +42,10 @@ for i in range(len(points)):
     count[x][y] = 1
 
 def move(x, y):
-    global new_count
     big_lst = []
     max_num = -1
     max_idx = (x, y)
-
+    new_count[x][y] = 0
     for dx, dy in zip(dxs, dys):
         next_x, next_y = x + dx, y + dy
         if in_range(next_x, next_y):
@@ -59,22 +61,19 @@ def process(new_count):
             if new_count[i][j] > 1:
                 new_count[i][j] = 0
 
-def find_next_points():
+def simulation():
+    for _ in range(t):
+        #print(new_count)
+        move_all()
+        ##print('------changed----------')
+        #print(new_count)
+        process(new_count)
+       
+def move_all():
     for i in range(n):
         for j in range(n):
             if new_count[i][j] == 1:
-                next_points.append((i, j))
-
-def simulation():
-    for _ in range(t):
-        move_all()
-        process(new_count)
-        find_next_points()
-    
-def move_all():
-    for p in next_points:
-        x, y = p[0] - 1, p[1] - 1
-        move(x, y)
+                move(i, j)
 
 def count_num():
     ans = 0
@@ -84,5 +83,6 @@ def count_num():
                 ans += 1
     return ans
 
+initial_value()
 simulation()
 print(count_num())
