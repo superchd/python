@@ -66,9 +66,10 @@ def find_next_points():
                 next_points.append((i, j))
 
 def simulation():
-    move_all()
-    process(new_count)
-    find_next_points()
+    for _ in range(t):
+        move_all()
+        process(new_count)
+        find_next_points()
     
 def move_all():
     for p in next_points:
@@ -82,5 +83,6 @@ def count_num():
             if new_count[i][j] == 1:
                 ans += 1
     return ans
+
 simulation()
 print(count_num())
