@@ -46,7 +46,7 @@ def move(x, y):
     big_lst = []
     max_num = -1
     max_idx = (x, y)
-    new_count[x][y] = 0
+ 
     for dx, dy in zip(dxs, dys):
         next_x, next_y = x + dx, y + dy
         if in_range(next_x, next_y):
@@ -54,10 +54,12 @@ def move(x, y):
             if a[next_x][next_y] > max_num:    
                 max_idx = (next_x, next_y)
                 max_num = a[next_x][next_y]
-    #print('max_idx', max_idx)
+    #print(f'current(x,y) = ({x}, {y})')
     move_x, move_y = max_idx[0], max_idx[1]
     new_count[move_x][move_y] += 1
-    #print(new_count)
+    #print('And I will move to ', max_idx)
+    #print('And this value is ', new_count[move_x][move_y])
+    #print('this is new count', new_count)
             
 def process(new_count):
     for i in range(n):
@@ -67,21 +69,32 @@ def process(new_count):
 
 def simulation():
     for _ in range(t):
-        print('------new_count check list---------')
-        print(new_count)
+       ## print('------new_count check list---------')
+        #print(new_count)
         move_all()
-        print('------changed----------')
-        print(new_count)
+       # print('------changed----------')
+        ##print(new_count)
         process(new_count)
+        #print('------new count------------')
+        #print(new_count)
         count = new_count
+        #print('----------count--------')
+        ##print(count)
        
 def move_all():
+    count = copy.deepcopy(new_count)
+    #print('In move_all, count =', count)
+
+    for i in range(n):
+        for j in range(n):
+            new_count[i][j] = 0
+    #print('Hi i m in move_all and n is', n, count)
     for i in range(n):
         for j in range(n):
             if count[i][j] == 1:
                 #print('I have to checked', i, j)
                 move(i, j)
-
+    
 def count_num():
     ans = 0
     for i in range(n):
