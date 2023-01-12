@@ -54,23 +54,23 @@ def find_loc(nums):
     mid.append(end[0])
     cnt = 0
     for i in range(len(mid) - 1):
-        dx = abs(mid[i + 1][0] - mid[i][0])
-        dy = abs(mid[i + 1][1] - mid[i][1])
+        dx = dist(mid[i + 1], mid[i])
         cnt += dx
-        cnt += dy
+        
     #print(cnt)    
     return cnt 
 
-def count_val(nums):
-    return find_loc(nums)
+def dist(a, b):
+    ax, ay = a[0], a[1]
+    bx, by = b[0], b[1]
+    return abs(ax - bx) + abs(ay - by)
     
-
 find_num()
 cand.sort()
 perm(0, 0, [])
 mini = sys.maxsize
 for c in comb:
-    if mini > count_val(c):
-        mini = count_val(c)
+    if mini > find_loc(c):
+        mini = find_loc(c)
     #    mini = count_val(c)
 print(mini)
