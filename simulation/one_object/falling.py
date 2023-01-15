@@ -21,25 +21,28 @@ def paint_raw(raw, m , k):
         a[raw][j] = 1
     return
 
+
+did = 0
+for r in range(n - 1):
+    if next_line_blocked(r, m, k) == True:
+        #print(f"Okay, next line({r + 1}) is blocked!")
+        a = copy.deepcopy(sample)
+        paint_raw(r, m, k)
+        did += 1
+        break
+
+## last line check
+
+
 cnt = 0
+for j in range(k - 1, m + k - 1):
+    if a[n - 1][j] == 0:
+        cnt = cnt + 1
 
-if n == 1:
-    print(1)
-else :
-    for r in range(n - 1):
-        if next_line_blocked(r, m, k) == True:
-            print(f"Okay, next line({r + 1}) is blocked!")
-            a = copy.deepcopy(sample)
-            paint_raw(r, m, k)
-            cnt += 1
-            break
-    
-    if cnt == 0:
-        if next_line_blocked(n - 2, m ,k) == False:
-            paint_raw(n - 1, m ,k)
-        
+if cnt == m and did == 0:
+    paint_raw(n - 1, m , k)
 
-    for i in range(n):
-        for j in range(n):
-            print(a[i][j], end = ' ')
-        print()
+for i in range(n):
+    for j in range(n):
+        print(a[i][j], end = ' ')
+    print()
